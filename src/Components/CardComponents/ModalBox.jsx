@@ -13,7 +13,7 @@ const ModalBox = ({ isModalOpen, onClose, cardName, cardId }) => {
     <>
       <Modal isOpen={isModalOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent minH={"70vh"} maxH={'max-content'}>
+        <ModalContent minH={"70vh"} maxH={"max-content"}>
           <ModalHeader>{cardName}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>

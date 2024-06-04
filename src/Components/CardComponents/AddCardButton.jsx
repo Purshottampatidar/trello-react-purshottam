@@ -3,11 +3,11 @@ import { Box, Button } from "@chakra-ui/react";
 
 const AddCardButton = ({ setShowInput }) => {
   return (
-    <Box  >
+    <Box>
       <Button
         fontSize={"0.9rem"}
         fontWeight={"400"}
-        w={'15rem'}
+        w={"15rem"}
         onClick={() => {
           setShowInput(true);
         }}

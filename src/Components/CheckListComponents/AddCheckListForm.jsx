@@ -10,14 +10,9 @@ import {
   PopoverBody,
   FormControl,
   FormLabel,
-  Input
+  Input,
 } from "@chakra-ui/react";
-const AddCheckListForm = ({
-  inputCheckList,
-  handleinputCheckList,
-  addCheckListHandler,
-}) => {
-  
+const AddCheckListForm = ({ addCheckListHandler }) => {
   return (
     <>
       <Popover>
@@ -34,11 +29,7 @@ const AddCheckListForm = ({
             <form onSubmit={addCheckListHandler}>
               <FormControl>
                 <FormLabel>title*</FormLabel>
-                <Input
-                  type="text"
-                  value={inputCheckList}
-                  onChange={handleinputCheckList}
-                />
+                <Input type="text" id="inputCheckListName" />
                 <Button bg={"blue.500"} color={"white"} mt={3} type="submit">
                   Add
                 </Button>

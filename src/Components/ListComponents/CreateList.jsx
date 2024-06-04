@@ -1,6 +1,12 @@
 import React from "react";
-import { Box,Text,Button,Input,Flex } from "@chakra-ui/react";
-const CreateList = ({handleAddList,listName,helperText,setListName,addListHandler,handleCancel,showInput}) => {
+import { Box, Text, Button, Input, Flex } from "@chakra-ui/react";
+const CreateList = ({
+  handleAddList,
+  helperText,
+  addListHandler,
+  handleCancel,
+  showInput,
+}) => {
   return (
     <>
       <Box display="flex" gap={3}>
@@ -29,42 +35,38 @@ const CreateList = ({handleAddList,listName,helperText,setListName,addListHandle
             <Box bg="white" rounded="lg" className="list_btn_pop">
               <Flex flexDir="column" m={2} gap={2}>
                 <form onSubmit={addListHandler}>
-                <Input
-                  h="10"
-                  p="0.5"
-                  outline="blue.400"
-                  type="text"
-                  id={listName}
-                  value={listName}
-                  placeholder="Enter list title..."
-                  onChange={(e) => {
-                    setListName(e.target.value);
-                  }}
-                  required
-                />
-                <Text>{helperText}</Text>
-                <Flex gap={2}>
-                  <Button
-                    type="submit"
-                    rounded="md"
-                    w="24"
-                    bg="blue.500"
-                    _hover={{ bg: "blue.600" }}
-                    color="white"
-                    p={2}
-                  >
-                    Add list
-                  </Button>
-                  <Button
-                    onClick={handleCancel}
-                    rounded="md"
-                    w="10"
-                    _hover={{ bg: "gray.200" }}
-                    p={2}
-                  >
-                    X
-                  </Button>
-                </Flex>
+                  <Input
+                    h="10"
+                    p="0.5"
+                    outline="blue.400"
+                    type="text"
+                    id="inputListName"
+                    placeholder="Enter list title..."
+                    required
+                  />
+                  <Text>{helperText}</Text>
+                  <Flex gap={2} mt={2}>
+                    <Button
+                      type="submit"
+                      rounded="md"
+                      w="24"
+                      bg="blue.500"
+                      _hover={{ bg: "blue.600" }}
+                      color="white"
+                      p={2}
+                    >
+                      Add list
+                    </Button>
+                    <Button
+                      onClick={handleCancel}
+                      rounded="md"
+                      w="10"
+                      _hover={{ bg: "gray.200" }}
+                      p={2}
+                    >
+                      X
+                    </Button>
+                  </Flex>
                 </form>
               </Flex>
             </Box>

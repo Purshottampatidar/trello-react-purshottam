@@ -1,41 +1,47 @@
-import React, { useState } from 'react'
-import { Flex,Text } from '@chakra-ui/react'
-import { DeleteIcon} from '@chakra-ui/icons'
-import ModalBox from './ModalBox';
-import { deleteCardApi } from '../ApiComponent/DeleteApi';
+import React, { useState } from "react";
+import { Flex, Text } from "@chakra-ui/react";
+import { DeleteIcon } from "@chakra-ui/icons";
+import ModalBox from "./ModalBox";
+import { deleteCardApi } from "../ApiComponent/DeleteApi";
 
 const Card = (props) => {
-  const [isModalOpen ,setModalIsOpen] = useState(false);
+  const [isModalOpen, setModalIsOpen] = useState(false);
   const cardId = props.cardId;
-  
 
-//   console.log(cardId);
-  const deleteCardHandler = () =>{
-    deleteCardApi(cardId,props.onCardChange);
-  }
+  const deleteCardHandler = () => {
+    deleteCardApi(cardId, props.onCardChange);
+  };
 
-  const handleModal = () =>{
+  const handleModal = () => {
     setModalIsOpen(true);
-    
-  }
-  const handleClose=()=>{
-     setModalIsOpen(false);
-  }
+  };
+  const handleClose = () => {
+    setModalIsOpen(false);
+  };
   return (
     <>
-        <Flex justifyContent={'space-between'}  bg={'gray.200'} m={2} rounded={'lg'} cursor={'pointer'} alignItems={'center'}  >
-            <Text onClick={handleModal} p={2}  w={'full'} >{props.cardName}</Text>
-            <DeleteIcon cursor={'pointer'} mr={2} onClick={deleteCardHandler}/>
-        </Flex>
-        <ModalBox
-           isModalOpen={isModalOpen}
-           onClose={handleClose}
-           cardName = {props.cardName}
-           cardId ={props.cardId}
-           key={props.cardId}
-        />
+      <Flex
+        justifyContent={"space-between"}
+        bg={"gray.200"}
+        m={2}
+        rounded={"lg"}
+        cursor={"pointer"}
+        alignItems={"center"}
+      >
+        <Text onClick={handleModal} p={2} w={"full"}>
+          {props.cardName}
+        </Text>
+        <DeleteIcon cursor={"pointer"} mr={2} onClick={deleteCardHandler} />
+      </Flex>
+      <ModalBox
+        isModalOpen={isModalOpen}
+        onClose={handleClose}
+        cardName={props.cardName}
+        cardId={props.cardId}
+        key={props.cardId}
+      />
     </>
-  )
-}
+  );
+};
 
-export default Card
+export default Card;

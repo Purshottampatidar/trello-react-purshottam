@@ -42,7 +42,11 @@ export const deleteChecklistApi = (checklistId, onDeleteCheckList) => {
     });
 };
 
-export const delteCheckItem = (checkItemId,checklistId,onItemDeleteChange) => {
+export const delteCheckItem = (
+  checkItemId,
+  checklistId,
+  onItemDeleteChange
+) => {
   const deleteItemUrl = `https://api.trello.com/1/checklists/${checklistId}/checkItems/${checkItemId}?key=${apiKey}&token=${token}`;
   axios
     .delete(deleteItemUrl)

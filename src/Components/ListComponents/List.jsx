@@ -10,46 +10,45 @@ import { fetchCardsInfo } from "../ApiComponent/fetchApi";
 
 const List = (props) => {
   const [showInput, setShowInput] = useState(false);
-  const [cardName, setCardName] = useState("");
   const [cardData, setCardData] = useState([]);
   const [helperText, setHelperText] = useState(false);
 
   const listId = props.listId;
 
   useEffect(() => {
-     fetchCardsInfo(listId,setCardData);
+    fetchCardsInfo(listId, setCardData);
   }, []);
   const handleCancel = () => {
     setShowInput(false);
     setHelperText("");
-    setCardName("");
   };
-  
+
   const addCardHandler = (e) => {
     e.preventDefault();
+    const cardElement = document.getElementById("inputCardName");
+    let cardName = cardElement.value;
     if (!cardName) {
       setHelperText("Enter card name*");
     } else {
-      addCardApi(cardName,listId,cardData,setCardData);
+      addCardApi(cardName, listId, cardData, setCardData);
       setShowInput(false);
-      setCardName("");
+      cardName = "";
       setHelperText("");
     }
   };
 
   const deleteListHandler = () => {
-    deleteListApi(listId,props.onListChange);
+    deleteListApi(listId, props.onListChange);
   };
 
-
   const cardChangeHandler = (deletedCardId) => {
-    console.log('card changehandler is called');
-    ChangeHandler(cardData,setCardData,deletedCardId);
+    console.log("card changehandler is called");
+    ChangeHandler(cardData, setCardData, deletedCardId);
   };
   return (
     <Flex>
       <Box w={"250px"} h={"max-content"} bg={"white"} rounded="lg">
-      <CardDisplay
+        <CardDisplay
           cardData={cardData}
           listName={props.listName}
           deleteListHandler={deleteListHandler}
@@ -62,8 +61,6 @@ const List = (props) => {
             id={props.id}
             showInput={showInput}
             setShowInput={setShowInput}
-            cardName={cardName}
-            setCardName={setCardName}
             addCardHandler={addCardHandler}
             handleCancel={handleCancel}
             helperText={helperText}
