@@ -19,7 +19,7 @@ const CreateBoard = ({onCreateBoardData}) => {
   const [helperText,setHelperText] = useState('');
 
   
-  const addBoardHandler = () =>{
+  const addBoardHandler = (e) =>{
      if(!inputValue){
         setDisplayInput(true);
         setHelperText('please enter a name of your board');
@@ -50,6 +50,7 @@ const CreateBoard = ({onCreateBoardData}) => {
         Create new Board
       </Box>
     <Modal isOpen={isOpen} onClose={onClose} >
+       <form onSubmit={addBoardHandler}>
        <ModalOverlay />
             <ModalContent>
                 <ModalHeader textAlign={'center'}>Create Board</ModalHeader>
@@ -63,9 +64,10 @@ const CreateBoard = ({onCreateBoardData}) => {
                 <Button colorScheme='blue' mr={3} onClick={onClose}>
                     Close
                 </Button>
-                <Button colorScheme='blue'  onClick={addBoardHandler}>Create Board</Button>
+                <Button type='submit' colorScheme='blue'>Create Board</Button>
                 </ModalFooter>
             </ModalContent>
+       </form>
     </Modal>
     </>
   )

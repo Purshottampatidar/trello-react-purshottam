@@ -7,8 +7,7 @@ import { deleteCardApi } from '../ApiComponent/DeleteApi';
 const Card = (props) => {
   const [isModalOpen ,setModalIsOpen] = useState(false);
   const cardId = props.cardId;
-  const apiKey = import.meta.env.VITE_API_KEY;
-  const token = import.meta.env.VITE_TOKEN;
+  
 
 //   console.log(cardId);
   const deleteCardHandler = () =>{

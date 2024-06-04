@@ -28,6 +28,7 @@ const CreateList = ({handleAddList,listName,helperText,setListName,addListHandle
           ) : (
             <Box bg="white" rounded="lg" className="list_btn_pop">
               <Flex flexDir="column" m={2} gap={2}>
+                <form onSubmit={addListHandler}>
                 <Input
                   h="10"
                   p="0.5"
@@ -44,7 +45,7 @@ const CreateList = ({handleAddList,listName,helperText,setListName,addListHandle
                 <Text>{helperText}</Text>
                 <Flex gap={2}>
                   <Button
-                    onClick={addListHandler}
+                    type="submit"
                     rounded="md"
                     w="24"
                     bg="blue.500"
@@ -64,6 +65,7 @@ const CreateList = ({handleAddList,listName,helperText,setListName,addListHandle
                     X
                   </Button>
                 </Flex>
+                </form>
               </Flex>
             </Box>
           )}

@@ -18,9 +18,11 @@ const CreateCheckList = ({cardId}) => {
       setInputCheckList(e.target.value);   
   }
   
-  const addCheckListHandler=()=>{
+  const addCheckListHandler=(e)=>{
+    e.preventDefault();
     addCheckListApi(inputCheckList,cardId,checklistData,setChecklistData);
     setInputCheckList('');
+    
   }
  
   const handleDeleteCheckList=(listId)=>{

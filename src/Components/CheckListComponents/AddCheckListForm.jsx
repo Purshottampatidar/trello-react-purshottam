@@ -1,6 +1,23 @@
-import React from 'react'
-import { Popover,PopoverTrigger,Button,PopoverContent,PopoverArrow,PopoverCloseButton,PopoverHeader,PopoverBody,FormControl,FormLabel,Input} from '@chakra-ui/react'
-const AddCheckListForm = ({inputCheckList,handleinputCheckList,addCheckListHandler}) => {
+import React from "react";
+import {
+  Popover,
+  PopoverTrigger,
+  Button,
+  PopoverContent,
+  PopoverArrow,
+  PopoverCloseButton,
+  PopoverHeader,
+  PopoverBody,
+  FormControl,
+  FormLabel,
+  Input
+} from "@chakra-ui/react";
+const AddCheckListForm = ({
+  inputCheckList,
+  handleinputCheckList,
+  addCheckListHandler,
+}) => {
+  
   return (
     <>
       <Popover>
@@ -10,22 +27,28 @@ const AddCheckListForm = ({inputCheckList,handleinputCheckList,addCheckListHandl
         <PopoverContent>
           <PopoverArrow />
           <PopoverCloseButton />
-          <PopoverHeader textAlign={'center'} border={'none'}>Add checklist</PopoverHeader>
+          <PopoverHeader textAlign={"center"} border={"none"}>
+            Add checklist
+          </PopoverHeader>
           <PopoverBody>
-            <FormControl>
-              <FormLabel>title*</FormLabel>
-              <Input 
-                type="text"
-                value={inputCheckList}
-                onChange={handleinputCheckList}
-               />
-              <Button bg={"blue.500"} color={"white"} mt={3} onClick={addCheckListHandler}>Add</Button>
-            </FormControl>
+            <form onSubmit={addCheckListHandler}>
+              <FormControl>
+                <FormLabel>title*</FormLabel>
+                <Input
+                  type="text"
+                  value={inputCheckList}
+                  onChange={handleinputCheckList}
+                />
+                <Button bg={"blue.500"} color={"white"} mt={3} type="submit">
+                  Add
+                </Button>
+              </FormControl>
+            </form>
           </PopoverBody>
         </PopoverContent>
       </Popover>
     </>
-  )
-}
+  );
+};
 
-export default AddCheckListForm
+export default AddCheckListForm;

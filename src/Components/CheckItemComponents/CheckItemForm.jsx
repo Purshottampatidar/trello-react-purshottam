@@ -7,6 +7,7 @@ const CheckItemForm = ({showinput,setShowInput,handleShowInput,inputCheckItem,se
           <Button onClick={handleShowInput}>Add an item</Button>
         ) : (
           <Box mt={2}>
+            <form onSubmit={addCheckItem}>
             <Input
               mb={2}
               type="text"
@@ -20,13 +21,14 @@ const CheckItemForm = ({showinput,setShowInput,handleShowInput,inputCheckItem,se
               bg={"blue.400"}
               color={"white"}
               mr={4}
-              onClick={addCheckItem}
+              type='submit'
             >
               Add
             </Button>
             <Button bg={"white"} onClick={() => setShowInput(false)}>
               Cancel
             </Button>
+            </form>
           </Box>
         )}
     </Box>

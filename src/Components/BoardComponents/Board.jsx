@@ -20,7 +20,7 @@ const Board = (props) => {
                 background : props.color ? props.color : `url(${props.image}) no-repeat center/cover`,
                 color:"white"
             }}
-            onClick={()=>navigate(`/board/${props.id}`)}
+            onClick={()=>navigate(`/boards/${props.id}`)}
         >
         {props.name}
         </Box>

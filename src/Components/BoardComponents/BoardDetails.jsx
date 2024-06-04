@@ -7,7 +7,6 @@ import ChangeHandler from '../ChangeHandlerComponent/ChangeHandler';
 import CreateList from '../ListComponents/CreateList';
 import { addListApi } from '../ApiComponent/AddApi';
 import { fetchAllListInfo,fetchBoardInfo } from '../ApiComponent/fetchApi';
-import { wrap } from 'framer-motion';
 const BoardDetails = () => {
   const [showInput, setShowInput] = useState(false);
   const [listName, setListName] = useState('');
