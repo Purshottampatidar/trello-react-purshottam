@@ -13,14 +13,13 @@ const CreateCheckList = ({ cardId }) => {
     fetchCheckListInfo(cardId, setChecklistData);
   }, []);
 
-  const addCheckListHandler = (e) => {
-    e.preventDefault();
+  const addCheckListHandler = () => {
     const checkListElement = document.getElementById("inputCheckListName");
     let inputCheckList = checkListElement.value;
     if (inputCheckList) {
       addCheckListApi(inputCheckList, cardId, checklistData, setChecklistData);
-      inputCheckList = "";
     }
+    checkListElement.value = '';
   };
 
   const handleDeleteCheckList = (listId) => {
@@ -30,7 +29,9 @@ const CreateCheckList = ({ cardId }) => {
 
   return (
     <Box>
-      <AddCheckListForm addCheckListHandler={addCheckListHandler} />
+      <AddCheckListForm
+       addCheckListHandler={addCheckListHandler}
+      />
       {checklistData.map((checklist) => {
         return (
           <CheckList
