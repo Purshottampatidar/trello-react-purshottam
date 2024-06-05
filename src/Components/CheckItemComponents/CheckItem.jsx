@@ -1,6 +1,6 @@
+import React from "react";
 import { DeleteIcon } from "@chakra-ui/icons";
 import { Checkbox, Flex, Text } from "@chakra-ui/react";
-import React from "react";
 import { delteCheckItem } from "../ApiComponent/DeleteApi";
 
 const CheckItem = ({

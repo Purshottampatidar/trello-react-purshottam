@@ -1,11 +1,7 @@
-// AddCardForm.js
 import React from "react";
 import { Box, Button, Flex, Input, Text } from "@chakra-ui/react";
 
 const AddCardForm = ({
-  id,
-  cardName,
-  setCardName,
   addCardHandler,
   handleCancel,
   helperText,

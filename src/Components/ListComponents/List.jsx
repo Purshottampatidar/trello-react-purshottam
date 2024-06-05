@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Box, Flex } from "@chakra-ui/react";
-import ChangeHandler from "../ChangeHandlerComponent/ChangeHandler";
 import CardDisplay from "../CardComponents/CardDisplay";
 import AddCardForm from "../CardComponents/AddCardForm";
 import AddCardButton from "../CardComponents/AddCardButton";
+import ChangeHandler from "../ChangeHandlerComponent/ChangeHandler";
 import { addCardApi } from "../ApiComponent/AddApi";
 import { deleteListApi } from "../ApiComponent/DeleteApi";
 import { fetchCardsInfo } from "../ApiComponent/fetchApi";
@@ -58,9 +58,6 @@ const List = (props) => {
           <AddCardButton setShowInput={setShowInput} />
         ) : (
           <AddCardForm
-            id={props.id}
-            showInput={showInput}
-            setShowInput={setShowInput}
             addCardHandler={addCardHandler}
             handleCancel={handleCancel}
             helperText={helperText}

@@ -1,6 +1,6 @@
+import axios from "axios";
 const apiKey = import.meta.env.VITE_API_KEY;
 const token = import.meta.env.VITE_TOKEN;
-import axios from "axios";
 
 export const deleteListApi = (listId, onListChange) => {
   const deleteListUrl = `https://api.trello.com/1/lists/${listId}/closed?key=${apiKey}&token=${token}&value=true`;

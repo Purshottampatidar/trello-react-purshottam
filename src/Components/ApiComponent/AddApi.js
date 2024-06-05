@@ -1,6 +1,6 @@
+import axios from "axios";
 const apiKey = import.meta.env.VITE_API_KEY;
 const token = import.meta.env.VITE_TOKEN;
-import axios from "axios";
 
 export const addBoardApi = (inputValue, onCreateBoardData) => {
   const createBoardUrl = `https://api.trello.com/1/boards/?name=${inputValue}&key=${apiKey}&token=${token}`;

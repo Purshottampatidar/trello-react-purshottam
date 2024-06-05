@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+import ModalBox from "./ModalBox";
 import { Flex, Text } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
-import ModalBox from "./ModalBox";
 import { deleteCardApi } from "../ApiComponent/DeleteApi";
 
 const Card = (props) => {

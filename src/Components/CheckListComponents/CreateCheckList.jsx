@@ -1,5 +1,5 @@
-import { Box } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
+import { Box } from "@chakra-ui/react";
 import CheckList from "./CheckList";
 import ChangeHandler from "../ChangeHandlerComponent/ChangeHandler";
 import AddCheckListForm from "./AddCheckListForm";

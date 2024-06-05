@@ -1,8 +1,8 @@
+import React, { useState } from "react";
 import { CheckIcon, DeleteIcon } from "@chakra-ui/icons";
 import { Box, Text } from "@chakra-ui/react";
-import React, { useState } from "react";
-import CreateCheckItem from "../CheckItemComponents/CreateCheckItem";
 import ProgressBar from "./ProgressBar";
+import CreateCheckItem from "../CheckItemComponents/CreateCheckItem";
 import { deleteChecklistApi } from "../ApiComponent/DeleteApi";
 const CheckList = ({
   checklistName,

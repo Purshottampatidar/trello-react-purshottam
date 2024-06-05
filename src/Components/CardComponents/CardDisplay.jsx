@@ -1,7 +1,7 @@
 import React from "react";
+import Card from "./Card";
 import { Box, Flex, Text } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
-import Card from "./Card";
 
 const CardDisplay = ({
   cardData,

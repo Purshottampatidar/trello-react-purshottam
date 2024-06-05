@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Box, Button, Input, Text } from "@chakra-ui/react";
-import { addBoardApi } from "../ApiComponent/AddApi";
 import {
   Modal,
   ModalOverlay,
@@ -11,6 +10,7 @@ import {
   ModalCloseButton,
   useDisclosure,
 } from "@chakra-ui/react";
+import { addBoardApi } from "../ApiComponent/AddApi";
 const CreateBoard = ({ onCreateBoardData }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [displayInput, setDisplayInput] = useState(false);

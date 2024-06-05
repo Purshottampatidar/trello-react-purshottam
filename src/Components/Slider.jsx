@@ -1,6 +1,6 @@
 import React from "react";
-import { Button, Box } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import { Button, Box } from "@chakra-ui/react";
 const Slider = () => {
   return (
     <Box minW={"10vw"} h={"100vh"} bg={"gray.400"}>

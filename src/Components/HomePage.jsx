@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import CreateBoard from "./BoardComponents/CreateBoard";
 import { Box, Flex } from "@chakra-ui/react";
 import Slider from "./Slider";
+import CreateBoard from "./BoardComponents/CreateBoard";
 import Board from "./BoardComponents/Board";
 import { fetchAllBoardInfo } from "./ApiComponent/fetchApi";
 

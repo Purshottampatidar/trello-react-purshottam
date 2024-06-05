@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Slider from "../Slider";
-import { Flex, Box } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
+import { Flex, Box } from "@chakra-ui/react";
+import Slider from "../Slider";
 import List from "../ListComponents/List";
-import ChangeHandler from "../ChangeHandlerComponent/ChangeHandler";
 import CreateList from "../ListComponents/CreateList";
+import ChangeHandler from "../ChangeHandlerComponent/ChangeHandler";
 import { addListApi } from "../ApiComponent/AddApi";
 import { fetchAllListInfo, fetchBoardInfo } from "../ApiComponent/fetchApi";
 const BoardDetails = () => {

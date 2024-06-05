@@ -1,11 +1,11 @@
-import { Box } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
+import { Box } from "@chakra-ui/react";
 import CheckItem from "./CheckItem";
+import CheckItemForm from "./CheckItemForm";
 import ChangeHandler from "../ChangeHandlerComponent/ChangeHandler";
 import { addCheckItemApi } from "../ApiComponent/AddApi";
 import { fetchCheckItemInfo } from "../ApiComponent/fetchApi";
 import { updateCheckItemState } from "../ApiComponent/updateApi";
-import CheckItemForm from "./CheckItemForm";
 const CreateCheckItem = ({ checklistId, cardId, onPercentageChange }) => {
   const [showinput, setShowInput] = useState(false);
   const [checkItemData, setCheckItemData] = useState([]);
