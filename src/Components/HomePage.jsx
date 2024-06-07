@@ -11,7 +11,17 @@ const HomePage = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchAllBoardInfo(setBoardData, setLoading, setError);
+    async function fetchData() {
+      try {
+          const data = await fetchAllBoardInfo();
+          setBoardData(data.data);
+          setLoading(false);
+      } catch(error) {
+          console.log(error);
+          setError(error);
+      }
+    }
+    fetchData();
   }, []);
 
   const addBoardDataHandler = (singleBoardData) => {

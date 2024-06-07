@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { CheckIcon, DeleteIcon } from "@chakra-ui/icons";
 import { Box, Text } from "@chakra-ui/react";
-import ProgressBar from "./ProgressBar";
 import CreateCheckItem from "../CheckItemComponents/CreateCheckItem";
 import { deleteChecklistApi } from "../ApiComponent/DeleteApi";
 const CheckList = ({
@@ -10,14 +9,19 @@ const CheckList = ({
   onDeleteCheckList,
   cardId,
 }) => {
-  const [percentage, setPercentage] = useState(0);
 
   const deleteChecklist = () => {
-    deleteChecklistApi(checklistId, onDeleteCheckList);
+    async function fetchData() {
+      try {
+          const data = await deleteChecklistApi(checklistId);
+          onDeleteCheckList(checklistId);
+      } catch(error) {
+          console.log(error); 
+      }
+    }
+    fetchData();
   };
-  const handlePercentageChange = (newPercent) => {
-    setPercentage(newPercent);
-  };
+  
   return (
     <>
       <Box display={"flex"} justifyContent={"space-between"} mt={10}>
@@ -27,12 +31,10 @@ const CheckList = ({
         </Text>
         <DeleteIcon cursor={"pointer"} onClick={deleteChecklist} />
       </Box>
-      <ProgressBar percentage={percentage} />
       <CreateCheckItem
         checklistId={checklistId}
         cardId={cardId}
         key={checklistId}
-        onPercentageChange={handlePercentageChange}
       />
     </>
   );

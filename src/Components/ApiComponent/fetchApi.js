@@ -2,86 +2,33 @@ import axios from "axios";
 const apiKey = import.meta.env.VITE_API_KEY;
 const token = import.meta.env.VITE_TOKEN;
 
-export const fetchAllBoardInfo = (setBoardData, setLoading, setError) => {
+export const fetchAllBoardInfo = () => {
   const fetchBoardsUrl = `https://api.trello.com/1/members/me/boards?key=${apiKey}&token=${token}`;
-  axios
-    .get(fetchBoardsUrl)
-    .then((response) => {
-      setBoardData(response.data);
-      setLoading(false);
-    })
-    .catch((error) => {
-      setError(error);
-      setLoading(false);
-    });
+  return axios.get(fetchBoardsUrl);
 };
 
-export const fetchAllListInfo = (
-  boardId,
-  setListData,
-  setLoading,
-  setError
-) => {
+export const fetchAllListInfo = (boardId) => {
   const allListUrl = `https://api.trello.com/1/boards/${boardId}/lists?key=${apiKey}&token=${token}`;
-  axios
-    .get(allListUrl)
-    .then((response) => {
-      setListData(response.data);
-      setLoading(false);
-    })
-    .catch((error) => {
-      setError(error);
-      setLoading(false);
-    });
+  return axios.get(allListUrl)
 };
 
-export const fetchBoardInfo = (boardId, setBoard, setLoading, setError) => {
+export const fetchBoardInfo = (boardId) => {
   const boardInfoUrl = `https://api.trello.com/1/boards/${boardId}?key=${apiKey}&token=${token}`;
-  axios
-    .get(boardInfoUrl)
-    .then((response) => {
-      setBoard(response.data);
-      setLoading(false);
-    })
-    .catch((error) => {
-      setError(error);
-      setLoading(false);
-    });
+  return axios.get(boardInfoUrl);
 };
 
-export const fetchCardsInfo = (listId, setCardData) => {
+export const fetchCardsInfo = (listId) => {
   const cardInfoInaList = `https://api.trello.com/1/lists/${listId}/cards?key=${apiKey}&token=${token}`;
-  axios
-    .get(cardInfoInaList)
-    .then((response) => {
-      setCardData(response.data);
-    })
-    .catch((error) => {
-      console.log("error in fetching card");
-    });
+  return axios.get(cardInfoInaList); 
 };
 
-export const fetchCheckListInfo = (cardId, setChecklistData) => {
+export const fetchCheckListInfo = (cardId) => {
   const checkListInfoUrl = `https://api.trello.com/1/cards/${cardId}/checklists?key=${apiKey}&token=${token}`;
-  axios
-    .get(checkListInfoUrl)
-    .then((response) => {
-      setChecklistData(response.data);
-    })
-    .catch((error) => {
-      console.log("error in fetching checklist data", error);
-    });
+  return axios.get(checkListInfoUrl);
 };
 
-export const fetchCheckItemInfo = (checklistId, setCheckItemData) => {
+export const fetchCheckItemInfo = (checklistId) => {
   const checkItemsInfoUrl = `https://api.trello.com/1/checklists/${checklistId}/checkItems?key=${apiKey}&token=${token}`;
-  axios
-    .get(checkItemsInfoUrl)
-    .then((response) => {
-      setCheckItemData(response.data);
-      console.log("all checkItem are fetched", response.data);
-    })
-    .catch((error) => {
-      console.log("error on item fetch", error);
-    });
+  return axios.get(checkItemsInfoUrl);
+
 };

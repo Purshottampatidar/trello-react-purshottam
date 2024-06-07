@@ -1,12 +1,13 @@
-import React from "react";
-import { Box, Text, Button, Input, Flex } from "@chakra-ui/react";
-const CreateList = ({
-  handleAddList,
-  helperText,
-  addListHandler,
-  handleCancel,
-  showInput,
-}) => {
+import React, { useRef,useState } from "react";
+import { Box,Button, Input, Flex } from "@chakra-ui/react";
+const CreateList = ({addListHandler}) => {
+  const [showInput, setShowInput] = useState(false);
+  const inputListRef = useRef();
+  const handleSubmit=(e)=>{
+    e.preventDefault();
+    addListHandler(inputListRef.current.value);
+    setShowInput(false);
+  }
   return (
     <>
       <Box display="flex" gap={3}>
@@ -22,7 +23,7 @@ const CreateList = ({
         >
           {!showInput ? (
             <Button
-              onClick={handleAddList}
+              onClick={()=>setShowInput(true)}
               rounded="lg"
               p={2}
               bg={"transparent"}
@@ -34,7 +35,7 @@ const CreateList = ({
           ) : (
             <Box bg="white" rounded="lg" className="list_btn_pop">
               <Flex flexDir="column" m={2} gap={2}>
-                <form onSubmit={addListHandler}>
+                <form onSubmit={handleSubmit}>
                   <Input
                     h="10"
                     p="0.5"
@@ -42,9 +43,9 @@ const CreateList = ({
                     type="text"
                     id="inputListName"
                     placeholder="Enter list title..."
+                    ref={inputListRef}
                     required
                   />
-                  <Text>{helperText}</Text>
                   <Flex gap={2} mt={2}>
                     <Button
                       type="submit"
@@ -58,8 +59,9 @@ const CreateList = ({
                       Add list
                     </Button>
                     <Button
-                      onClick={handleCancel}
+                      onClick={()=>setShowInput(false)}
                       rounded="md"
+                      bg={"white"}
                       w="10"
                       _hover={{ bg: "gray.200" }}
                       p={2}

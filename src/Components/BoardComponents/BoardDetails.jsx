@@ -4,12 +4,9 @@ import { Flex, Box } from "@chakra-ui/react";
 import Slider from "../Slider";
 import List from "../ListComponents/List";
 import CreateList from "../ListComponents/CreateList";
-import ChangeHandler from "../ChangeHandlerComponent/ChangeHandler";
 import { addListApi } from "../ApiComponent/AddApi";
 import { fetchAllListInfo, fetchBoardInfo } from "../ApiComponent/fetchApi";
 const BoardDetails = () => {
-  const [showInput, setShowInput] = useState(false);
-  const [helperText, setHelperText] = useState("");
   const [listData, setListData] = useState([]);
   const [board, setBoard] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -18,37 +15,37 @@ const BoardDetails = () => {
   let { boardId } = useParams();
 
   useEffect(() => {
-    fetchAllListInfo(boardId, setListData, setLoading, setError);
-    fetchBoardInfo(boardId, setBoard, setLoading, setError);
+    async function fetchData() {
+      try {
+          const listDatas = await fetchAllListInfo(boardId);
+          const boardData = await fetchBoardInfo(boardId);
+          setListData(listDatas.data);
+          setBoard(boardData.data);
+          setLoading(false);
+      } catch(error) {
+          console.log(error);
+          setError(error);
+      }
+    }
+    fetchData();
+
   }, []);
-
-  const handleAddList = () => {
-    setShowInput(true);
-  };
-
-  const handleCancel = () => {
-    setShowInput(false);
-    setHelperText("");
-  };
-
-  const addListHandler = (e) => {
-    e.preventDefault();
-    const listElement = document.getElementById("inputListName");
-    let listName = listElement.value;
-    if (!listName) {
-      setHelperText("Enter the list name*");
-    } else {
-      addListApi(listName, boardId, listData, setListData);
-      setHelperText("");
-      listName = "";
-      setShowInput(false);
+  const addListHandler = (listName) => {
+    if (listName) {
+      async function fetchData() {
+        try {
+            const list = await addListApi(listName,boardId);
+            setListData([...listData,list.data]);
+        } catch(error) {
+            console.log(error); 
+        }
+      }
+      fetchData();
+      listName='';
     }
   };
 
-  const listChangeHandler = (deletedList) => {
-    ChangeHandler(listData, setListData, deletedList.id);
-    console.log("list change hadler is called");
-  };
+ 
   return (
     <Box h={"90vh"} overflow={"hidden"}>
       {loading ? (
@@ -98,16 +95,13 @@ const BoardDetails = () => {
                     listName={list.name}
                     listId={list.id}
                     key={list.id}
-                    onListChange={listChangeHandler}
+                    setListData={setListData}
+                    listData={listData}
                   />
                 );
               })}
               <CreateList
-                handleAddList={handleAddList}
-                helperText={helperText}
                 addListHandler={addListHandler}
-                handleCancel={handleCancel}
-                showInput={showInput}
               />
             </Box>
           </Flex>

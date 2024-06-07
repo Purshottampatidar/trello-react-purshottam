@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   Popover,
   PopoverTrigger,
@@ -15,10 +15,13 @@ import {
 } from "@chakra-ui/react";
 
 const AddCheckListForm = ({ addCheckListHandler }) => {
+  const inputCheckListRef = useRef();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    addCheckListHandler();
+    const checkListName = inputCheckListRef.current.value;
+    addCheckListHandler(checkListName);
     onClose();
   };
   return (
@@ -30,14 +33,17 @@ const AddCheckListForm = ({ addCheckListHandler }) => {
         <PopoverContent>
           <PopoverArrow />
           <PopoverCloseButton />
-          <PopoverHeader textAlign={"center"} border={"none"}>
+          <PopoverHeader fontSize={'bold'} border={"none"}>
             Add checklist
           </PopoverHeader>
           <PopoverBody>
             <form onSubmit={handleSubmit}>
               <FormControl>
                 <FormLabel>title*</FormLabel>
-                <Input type="text" id="inputCheckListName" />
+                <Input
+                  type="text"
+                  id="inputCheckListName"
+                  ref={inputCheckListRef} />
                 <Button bg={"blue.500"} color={"white"} mt={3} type="submit">
                   Add
                 </Button>

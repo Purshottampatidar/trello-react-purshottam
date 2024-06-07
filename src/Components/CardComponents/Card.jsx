@@ -9,7 +9,15 @@ const Card = (props) => {
   const cardId = props.cardId;
 
   const deleteCardHandler = () => {
-    deleteCardApi(cardId, props.onCardChange);
+    async function fetchData() {
+      try {
+          const data = await deleteCardApi(cardId);
+          props.onCardChange(cardId);
+      } catch(error) {
+          console.log(error); 
+      }
+    }
+    fetchData();
   };
 
   const handleModal = () => {

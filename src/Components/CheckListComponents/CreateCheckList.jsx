@@ -10,21 +10,36 @@ const CreateCheckList = ({ cardId }) => {
   const [checklistData, setChecklistData] = useState([]);
 
   useEffect(() => {
-    fetchCheckListInfo(cardId, setChecklistData);
+    async function fetchData() {
+      try {
+          const data = await fetchCheckListInfo(cardId);
+          setChecklistData(data.data);
+      } catch(error) {
+          console.log(error);
+      }
+    }
+    fetchData();
   }, []);
 
-  const addCheckListHandler = () => {
-    const checkListElement = document.getElementById("inputCheckListName");
-    let inputCheckList = checkListElement.value;
+  const addCheckListHandler = (inputCheckList) => {
     if (inputCheckList) {
-      addCheckListApi(inputCheckList, cardId, checklistData, setChecklistData);
+      async function fetchData() {
+        try {
+            const checklist = await addCheckListApi(inputCheckList,cardId);
+            setChecklistData([...checklistData,checklist.data]);
+        } catch(error) {
+            console.log(error); 
+        }
+      }
+      fetchData();
     }
-    checkListElement.value = '';
+    inputCheckList='';
   };
 
   const handleDeleteCheckList = (listId) => {
     console.log("checklist change is called");
-    ChangeHandler(checklistData, setChecklistData, listId);
+    const newData =ChangeHandler(checklistData,listId);
+    setChecklistData(newData);
   };
 
   return (

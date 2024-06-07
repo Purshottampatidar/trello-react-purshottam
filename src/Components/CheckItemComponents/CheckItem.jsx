@@ -12,7 +12,15 @@ const CheckItem = ({
   changeStateHandler,
 }) => {
   const handleDelteItem = () => {
-    delteCheckItem(checkItemId, checklistId, onItemDeleteChange);
+    async function fetchData() {
+      try {
+          const data = await delteCheckItem(checkItemId,checklistId);
+          onItemDeleteChange(checkItemId);
+      } catch(error) {
+          console.log(error); 
+      }
+    }
+    fetchData();
   };
   const handleCheckBoxChange = (e) => {
     const currentState = e.target.checked;

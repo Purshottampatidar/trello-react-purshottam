@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Box, Button, Input, Text } from "@chakra-ui/react";
 import {
   Modal,
@@ -15,18 +15,27 @@ const CreateBoard = ({ onCreateBoardData }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [displayInput, setDisplayInput] = useState(false);
   const [helperText, setHelperText] = useState("");
+  const inputRef = useRef(null)
 
   const addBoardHandler = (e) => {
     e.preventDefault();
-    const inputElement = document.getElementById("inputBoardName");
-    let inputValue = inputElement.value;
+    
+    let inputValue = inputRef.current.value;
     if (!inputValue) {
       setDisplayInput(true);
       setHelperText("please enter a name of your board");
     } else {
+      async function fetchData() {
+        try {
+            const board = await addBoardApi(inputValue);
+            onCreateBoardData(board.data);
+        } catch(error) {
+            console.log(error); 
+        }
+      }
+      fetchData();
       setHelperText("");
       setDisplayInput(false);
-      addBoardApi(inputValue, onCreateBoardData);
       inputValue = "";
       onClose(close);
     }
@@ -53,7 +62,7 @@ const CreateBoard = ({ onCreateBoardData }) => {
         <form onSubmit={addBoardHandler}>
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader textAlign={"center"}>Create Board</ModalHeader>
+            <ModalHeader>Create Board</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
               <Text fontSize={"1rem"} fontWeight={"semibold"}>
@@ -62,6 +71,7 @@ const CreateBoard = ({ onCreateBoardData }) => {
               <Input
                 id="inputBoardName"
                 placeholder="Enter your board name"
+                ref={inputRef}
               ></Input>
               <Box display={`${displayInput ? "flex" : "node"}`}>
                 {helperText}
@@ -69,14 +79,14 @@ const CreateBoard = ({ onCreateBoardData }) => {
             </ModalBody>
             <ModalFooter
               display={"flex"}
-              justifyContent={"center"}
+              justifyContent={"flex-start"}
               gap={"2rem"}
             >
-              <Button colorScheme="blue" mr={3} onClick={onClose}>
-                Close
-              </Button>
               <Button type="submit" colorScheme="blue">
                 Create Board
+              </Button>
+              <Button colorScheme="white"  _hover={{ bg: "gray.200" }} color={"black"} mr={3} onClick={onClose}>
+                Close
               </Button>
             </ModalFooter>
           </ModalContent>
